@@ -98,12 +98,13 @@ def main():
     create_all_tense_quizzes(game)
 
     print()
-    print("Starting server on http://localhost:8000/")
+    host = "0.0.0.0"
+    print(f"Starting server on http://{host}:8000/")
     print("Visit the lobby to select a tense quiz!")
     print()
 
     # Start the server
-    game.start(host="localhost", port=8000)
+    game.start(host=host, port=8000)
 
 
 if __name__ == "__main__":
