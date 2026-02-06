@@ -51,10 +51,15 @@ def create_tense_question(tense: str) -> Q:
         verb, person = seed
         return conjugate(verb, tense, person)
 
+    def check(correct_answer, submitted_answer):
+        """Check if submitted answer matches correct answer (case-insensitive)."""
+        return correct_answer.lower().strip() == submitted_answer.lower().strip()
+
     return Q[tuple](
         get_seed=get_seed,
         ask=ask,
         correct=correct,
+        check=check,  # type: ignore
     )
 
 
