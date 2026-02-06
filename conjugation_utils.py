@@ -127,10 +127,10 @@ def get_conjugation_table(verb: str, tense: str) -> dict[str, str]:
 TENSE_MARKERS = {
     "present": "ahora",
     "preterite": "ayer",
-    "imperfect": "mientras",
+    "imperfect": "cuando",
     "future": "mañana",
     "conditional": "si...",
-    "subjunctive": "que",
+    "subjunctive": "espero que",
 }
 
 
@@ -143,16 +143,17 @@ def format_question_text(person: str, verb: str, tense: str) -> str:
         tense: The tense for determining the marker word
 
     Returns:
-        Formatted question text (e.g., "(tener) hoy yo [...]")
+        Formatted question text (e.g., "(tener) ahora yo [...]")
     """
     marker = TENSE_MARKERS.get(tense, "")
+    person_lower = person.lower()
 
     if tense == "conditional":
         # Special case: "si..." comes after the input
-        return f"({verb}) {person} [...] {marker}"
+        return f"{person_lower} ({verb}) [...] {marker}"
     else:
         # All other tenses: marker comes before person
-        return f"({verb}) {marker} {person} [...]"
+        return f"{marker} {person_lower} ({verb}) [...]"
 
 
 def format_context(person: str, verb: str, tense: str) -> str:
