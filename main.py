@@ -41,7 +41,7 @@ def create_tense_question(tense: str) -> Q:
         """Create the question prompt."""
         verb, person = seed
         return {
-            "text": format_question_text(person, verb),
+            "text": format_question_text(person, verb, tense),
             "type": "fill",
             # "context": format_context(person, verb, tense),
         }

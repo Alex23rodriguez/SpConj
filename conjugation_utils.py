@@ -124,17 +124,35 @@ def get_conjugation_table(verb: str, tense: str) -> dict[str, str]:
     return {person: conjugate(verb, tense, person) for person in PERSONS}
 
 
-def format_question_text(person: str, verb: str) -> str:
+TENSE_MARKERS = {
+    "present": "ahora",
+    "preterite": "ayer",
+    "imperfect": "mientras",
+    "future": "mañana",
+    "conditional": "si...",
+    "subjunctive": "que",
+}
+
+
+def format_question_text(person: str, verb: str, tense: str) -> str:
     """Format the question text for a fill-in-the-blank question.
 
     Args:
         person: The grammatical person
         verb: The infinitive verb
+        tense: The tense for determining the marker word
 
     Returns:
-        Formatted question text (e.g., "Yo [...] (ir)")
+        Formatted question text (e.g., "(tener) hoy yo [...]")
     """
-    return f"({verb}) {person} [...]"
+    marker = TENSE_MARKERS.get(tense, "")
+
+    if tense == "conditional":
+        # Special case: "si..." comes after the input
+        return f"({verb}) {person} [...] {marker}"
+    else:
+        # All other tenses: marker comes before person
+        return f"({verb}) {marker} {person} [...]"
 
 
 def format_context(person: str, verb: str, tense: str) -> str:
