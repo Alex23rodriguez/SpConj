@@ -56,16 +56,16 @@ wheels = [
 
 [[package]]
 name = "ezquiz"
-version = "0.5.0"
+version = "0.5.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "fastapi" },
     { name = "jinja2" },
     { name = "uvicorn" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/05/71/c1cb6578e4eaf7f1ea7520dbe1e95d8b0e146232b2448b1977ab1db85400/ezquiz-0.5.0.tar.gz", hash = "sha256:c85834918038dee402381f2f2dec07d695b100d9b7bab9fd10acd8e21f48a67e", size = 33328, upload-time = "2026-02-06T05:50:25.631Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/0e/29/83c144ede3d8172d54eff726c1c37971cce6314d0e3ebd22229a737532b9/ezquiz-0.5.2.tar.gz", hash = "sha256:57450626adfed87368d87adf8940214c701fb130ee379cc6d7be0d2b58e2ff4f", size = 33331, upload-time = "2026-02-06T06:59:35.891Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/9f/6d/aa9f8b36d9860ddc483c31da302a14dfc6f7cbfda38cc0f099c2f8fb62f8/ezquiz-0.5.0-py3-none-any.whl", hash = "sha256:5ba74596e1534571004f75f8b29d0c664ffceef587c3ec402e84d206c0269c98", size = 22369, upload-time = "2026-02-06T05:50:24.203Z" },
+    { url = "https://files.pythonhosted.org/packages/f6/77/484416a67694c27563bbe3978b04bec960a66d40a1da054c9b12c13396f9/ezquiz-0.5.2-py3-none-any.whl", hash = "sha256:0c491029ec302aaf175dae04a15d42224659d626202a3b729d6b03179c414866", size = 22371, upload-time = "2026-02-06T06:59:35.076Z" },
 ]
 
 [[package]]
@@ -272,7 +272,7 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "ezquiz", specifier = ">=0.5.0" }]
+requires-dist = [{ name = "ezquiz", specifier = ">=0.5.2" }]
 
 [[package]]
 name = "starlette"
