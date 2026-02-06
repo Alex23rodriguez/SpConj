@@ -18,7 +18,11 @@ IRREGULAR_VERBS = [
     "querer",
     "saber",
 ]
-REGULAR_VERBS = ["deber"]  # Can add more regular -er verbs here
+# Regular verbs: 3 for each ending (-ar, -er, -ir)
+REGULAR_VERBS_AR = ["hablar", "comprar", "estudiar"]
+REGULAR_VERBS_ER = ["comer", "beber", "deber"]
+REGULAR_VERBS_IR = ["vivir", "escribir", "abrir"]
+REGULAR_VERBS = REGULAR_VERBS_AR + REGULAR_VERBS_ER + REGULAR_VERBS_IR
 ALL_VERBS = IRREGULAR_VERBS + REGULAR_VERBS
 
 # Tenses
@@ -474,8 +478,59 @@ IRREGULAR_OVERRIDES = {
     },
 }
 
+# Regular -ar verb endings for each tense
+REGULAR_ENDINGS_AR = {
+    "present": {
+        "Yo": "o",
+        "Tú": "as",
+        "Él/Ella": "a",
+        "Nosotros": "amos",
+        "Ellos": "an",
+        "Ustedes": "an",
+    },
+    "preterite": {
+        "Yo": "é",
+        "Tú": "aste",
+        "Él/Ella": "ó",
+        "Nosotros": "amos",
+        "Ellos": "aron",
+        "Ustedes": "aron",
+    },
+    "imperfect": {
+        "Yo": "aba",
+        "Tú": "abas",
+        "Él/Ella": "aba",
+        "Nosotros": "ábamos",
+        "Ellos": "aban",
+        "Ustedes": "aban",
+    },
+    "future": {
+        "Yo": "é",
+        "Tú": "ás",
+        "Él/Ella": "á",
+        "Nosotros": "emos",
+        "Ellos": "án",
+        "Ustedes": "án",
+    },
+    "conditional": {
+        "Yo": "ía",
+        "Tú": "ías",
+        "Él/Ella": "ía",
+        "Nosotros": "íamos",
+        "Ellos": "ían",
+        "Ustedes": "ían",
+    },
+    "subjunctive": {
+        "Yo": "e",
+        "Tú": "es",
+        "Él/Ella": "e",
+        "Nosotros": "emos",
+        "Ellos": "en",
+        "Ustedes": "en",
+    },
+}
+
 # Regular -er verb endings for each tense
-# Note: All verbs in this project are -er verbs (deber, etc.)
 REGULAR_ENDINGS_ER = {
     "present": {
         "Yo": "o",
@@ -516,5 +571,65 @@ REGULAR_ENDINGS_ER = {
         "Nosotros": "íamos",
         "Ellos": "ían",
         "Ustedes": "ían",
+    },
+    "subjunctive": {
+        "Yo": "a",
+        "Tú": "as",
+        "Él/Ella": "a",
+        "Nosotros": "amos",
+        "Ellos": "an",
+        "Ustedes": "an",
+    },
+}
+
+# Regular -ir verb endings for each tense
+REGULAR_ENDINGS_IR = {
+    "present": {
+        "Yo": "o",
+        "Tú": "es",
+        "Él/Ella": "e",
+        "Nosotros": "imos",
+        "Ellos": "en",
+        "Ustedes": "en",
+    },
+    "preterite": {
+        "Yo": "í",
+        "Tú": "iste",
+        "Él/Ella": "ió",
+        "Nosotros": "imos",
+        "Ellos": "ieron",
+        "Ustedes": "ieron",
+    },
+    "imperfect": {
+        "Yo": "ía",
+        "Tú": "ías",
+        "Él/Ella": "ía",
+        "Nosotros": "íamos",
+        "Ellos": "ían",
+        "Ustedes": "ían",
+    },
+    "future": {
+        "Yo": "é",
+        "Tú": "ás",
+        "Él/Ella": "á",
+        "Nosotros": "emos",
+        "Ellos": "án",
+        "Ustedes": "án",
+    },
+    "conditional": {
+        "Yo": "ía",
+        "Tú": "ías",
+        "Él/Ella": "ía",
+        "Nosotros": "íamos",
+        "Ellos": "ían",
+        "Ustedes": "ían",
+    },
+    "subjunctive": {
+        "Yo": "a",
+        "Tú": "as",
+        "Él/Ella": "a",
+        "Nosotros": "amos",
+        "Ellos": "an",
+        "Ustedes": "an",
     },
 }

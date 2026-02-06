@@ -6,19 +6,19 @@ This module provides functions to conjugate Spanish verbs using:
 """
 
 from verb_data import (ALL_VERBS, IRREGULAR_OVERRIDES, IRREGULAR_VERBS,
-                       PERSONS, REGULAR_ENDINGS_ER, REGULAR_VERBS, TENSES)
+                       PERSONS, REGULAR_ENDINGS_AR, REGULAR_ENDINGS_ER,
+                       REGULAR_ENDINGS_IR, REGULAR_VERBS, REGULAR_VERBS_AR,
+                       REGULAR_VERBS_ER, REGULAR_VERBS_IR, TENSES)
 
 
 def get_infinitive_ending(verb: str) -> str:
     """Get the infinitive ending of a verb.
 
-    All verbs in this project are -er verbs.
-
     Args:
-        verb: The infinitive verb (e.g., "deber")
+        verb: The infinitive verb (e.g., "hablar", "comer", "vivir")
 
     Returns:
-        The ending (e.g., "er")
+        The ending (e.g., "ar", "er", "ir")
     """
     return verb[-2:]
 
@@ -48,18 +48,18 @@ def is_irregular(verb: str) -> bool:
 
 
 def conjugate_regular(verb: str, tense: str, person: str) -> str:
-    """Conjugate a regular -er verb.
+    """Conjugate a regular verb based on its infinitive ending (-ar, -er, -ir).
 
     Args:
-        verb: The infinitive verb (e.g., "deber")
+        verb: The infinitive verb (e.g., "hablar", "comer", "vivir")
         tense: The tense (e.g., "present", "future")
         person: The grammatical person (e.g., "Yo", "Tú")
 
     Returns:
-        The conjugated form (e.g., "debo")
+        The conjugated form (e.g., "hablo", "como", "vivo")
 
     Raises:
-        ValueError: If the tense or person is invalid
+        ValueError: If the tense, person, or verb ending is invalid
     """
     if tense not in TENSES:
         raise ValueError(f"Unknown tense: {tense}. Must be one of {TENSES}")
@@ -67,9 +67,29 @@ def conjugate_regular(verb: str, tense: str, person: str) -> str:
     if person not in PERSONS:
         raise ValueError(f"Unknown person: {person}. Must be one of {PERSONS}")
 
+    ending = get_infinitive_ending(verb)
+
+    # Future and conditional use the FULL INFINITIVE + endings
+    if tense in ("future", "conditional"):
+        if ending == "ar":
+            return verb + REGULAR_ENDINGS_AR[tense][person]
+        elif ending == "er":
+            return verb + REGULAR_ENDINGS_ER[tense][person]
+        elif ending == "ir":
+            return verb + REGULAR_ENDINGS_IR[tense][person]
+        else:
+            raise ValueError(f"Unknown verb ending: {ending}. Must be -ar, -er, or -ir")
+
+    # Other tenses use STEM + endings
     stem = get_stem(verb)
-    ending = REGULAR_ENDINGS_ER[tense][person]
-    return stem + ending
+    if ending == "ar":
+        return stem + REGULAR_ENDINGS_AR[tense][person]
+    elif ending == "er":
+        return stem + REGULAR_ENDINGS_ER[tense][person]
+    elif ending == "ir":
+        return stem + REGULAR_ENDINGS_IR[tense][person]
+    else:
+        raise ValueError(f"Unknown verb ending: {ending}. Must be -ar, -er, or -ir")
 
 
 def conjugate(verb: str, tense: str, person: str) -> str:

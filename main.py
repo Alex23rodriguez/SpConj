@@ -15,25 +15,15 @@ from random import choice
 from ezquiz import APIGame, Q
 
 from conjugation_utils import conjugate, format_context, format_question_text
-from verb_data import ALL_VERBS, PERSONS, TENSES
+from verb_data import IRREGULAR_VERBS, PERSONS, REGULAR_VERBS, TENSES
 
 
-def create_tense_question(tense: str) -> Q:
-    """Create a Q object for a specific tense quiz.
-
-    This generates random fill-in-the-blank questions asking users to
-    conjugate one of the 10 verbs for a randomly selected person.
-
-    Args:
-        tense: The tense name (e.g., "present", "preterite")
-
-    Returns:
-        Q object configured for the tense
-    """
+def create_tense_question_regular(tense: str) -> Q:
+    """Create a Q object for regular verbs in a specific tense."""
 
     def get_seed():
-        """Randomly select a verb and person."""
-        verb = choice(ALL_VERBS)
+        """Randomly select a regular verb and person."""
+        verb = choice(REGULAR_VERBS)
         person = choice(PERSONS)
         return (verb, person)
 
@@ -43,7 +33,6 @@ def create_tense_question(tense: str) -> Q:
         return {
             "text": format_question_text(person, verb, tense),
             "type": "fill",
-            # "context": format_context(person, verb, tense),
         }
 
     def correct(seed):
@@ -51,9 +40,43 @@ def create_tense_question(tense: str) -> Q:
         verb, person = seed
         return conjugate(verb, tense, person)
 
-    def check(correct_answer, submitted_answer):
+    def check(correct_ans: str, submitted_ans: str) -> bool:
         """Check if submitted answer matches correct answer (case-insensitive)."""
-        return correct_answer.lower().strip() == submitted_answer.lower().strip()
+        return correct_ans.lower().strip() == submitted_ans.lower().strip()  # type: ignore
+
+    return Q[tuple](
+        get_seed=get_seed,
+        ask=ask,
+        correct=correct,
+        check=check,  # type: ignore
+    )
+
+
+def create_tense_question_irregular(tense: str) -> Q:
+    """Create a Q object for irregular verbs in a specific tense."""
+
+    def get_seed():
+        """Randomly select an irregular verb and person."""
+        verb = choice(IRREGULAR_VERBS)
+        person = choice(PERSONS)
+        return (verb, person)
+
+    def ask(seed):
+        """Create the question prompt."""
+        verb, person = seed
+        return {
+            "text": format_question_text(person, verb, tense),
+            "type": "fill",
+        }
+
+    def correct(seed):
+        """Return the correct conjugation."""
+        verb, person = seed
+        return conjugate(verb, tense, person)
+
+    def check(correct_ans: str, submitted_ans: str) -> bool:
+        """Check if submitted answer matches correct answer (case-insensitive)."""
+        return correct_ans.lower().strip() == submitted_ans.lower().strip()  # type: ignore
 
     return Q[tuple](
         get_seed=get_seed,
@@ -64,22 +87,23 @@ def create_tense_question(tense: str) -> Q:
 
 
 def create_all_tense_quizzes(game: APIGame) -> None:
-    """Create a separate quiz for each tense.
+    """Create a separate quiz for each tense with regular and irregular categories.
 
     Args:
         game: The APIGame instance to add quizzes to
     """
     for tense in TENSES:
-        # Create one Q object for this tense that handles all verbs
-        tense_q = create_tense_question(tense)
+        # Create separate Q objects for regular and irregular verbs
+        regular_q = create_tense_question_regular(tense)
+        irregular_q = create_tense_question_irregular(tense)
 
-        # Add quiz at subpath corresponding to the tense
-        # All 10 verbs are in one category "all verbs"
+        # Add quiz with two categories
         game.add_quiz(
             subpath=tense,
             title=tense.replace("_", " ").title(),
             qs={
-                "all verbs": tense_q,
+                "regular verbs": regular_q,
+                "irregular verbs": irregular_q,
             },
         )
 
@@ -90,7 +114,8 @@ def main():
     """Main entry point."""
     print("Spanish Verb Conjugation Quiz Server")
     print("=" * 50)
-    print(f"Verbs: {', '.join(ALL_VERBS)}")
+    print(f"Regular verbs ({len(REGULAR_VERBS)}): {', '.join(REGULAR_VERBS)}")
+    print(f"Irregular verbs ({len(IRREGULAR_VERBS)}): {', '.join(IRREGULAR_VERBS)}")
     print(f"Persons: {', '.join(PERSONS)}")
     print(f"Tenses: {', '.join(TENSES)}")
     print("=" * 50)
