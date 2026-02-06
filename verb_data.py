@@ -22,7 +22,7 @@ REGULAR_VERBS = ["deber"]  # Can add more regular -er verbs here
 ALL_VERBS = IRREGULAR_VERBS + REGULAR_VERBS
 
 # Tenses
-TENSES = ["present", "preterite", "imperfect", "future", "conditional"]
+TENSES = ["present", "preterite", "imperfect", "future", "conditional", "subjunctive"]
 
 # Person definitions (simplified + Ustedes)
 PERSONS = ["Yo", "Tú", "Él/Ella", "Nosotros", "Ellos", "Ustedes"]
@@ -71,6 +71,14 @@ IRREGULAR_OVERRIDES = {
             "Ellos": "irían",
             "Ustedes": "irían",
         },
+        "subjunctive": {
+            "Yo": "vaya",
+            "Tú": "vayas",
+            "Él/Ella": "vaya",
+            "Nosotros": "vayamos",
+            "Ellos": "vayan",
+            "Ustedes": "vayan",
+        },
     },
     "ser": {
         "present": {
@@ -112,6 +120,14 @@ IRREGULAR_OVERRIDES = {
             "Nosotros": "seríamos",
             "Ellos": "serían",
             "Ustedes": "serían",
+        },
+        "subjunctive": {
+            "Yo": "sea",
+            "Tú": "seas",
+            "Él/Ella": "sea",
+            "Nosotros": "seamos",
+            "Ellos": "sean",
+            "Ustedes": "sean",
         },
     },
     "estar": {
@@ -155,6 +171,14 @@ IRREGULAR_OVERRIDES = {
             "Ellos": "estarían",
             "Ustedes": "estarían",
         },
+        "subjunctive": {
+            "Yo": "esté",
+            "Tú": "estés",
+            "Él/Ella": "esté",
+            "Nosotros": "estemos",
+            "Ellos": "estén",
+            "Ustedes": "estén",
+        },
     },
     "hacer": {
         "present": {
@@ -196,6 +220,14 @@ IRREGULAR_OVERRIDES = {
             "Nosotros": "haríamos",
             "Ellos": "harían",
             "Ustedes": "harían",
+        },
+        "subjunctive": {
+            "Yo": "haga",
+            "Tú": "hagas",
+            "Él/Ella": "haga",
+            "Nosotros": "hagamos",
+            "Ellos": "hagan",
+            "Ustedes": "hagan",
         },
     },
     "poder": {
@@ -239,6 +271,14 @@ IRREGULAR_OVERRIDES = {
             "Ellos": "podrían",
             "Ustedes": "podrían",
         },
+        "subjunctive": {
+            "Yo": "pueda",
+            "Tú": "puedas",
+            "Él/Ella": "pueda",
+            "Nosotros": "podamos",
+            "Ellos": "puedan",
+            "Ustedes": "puedan",
+        },
     },
     "haber": {
         "present": {
@@ -280,6 +320,14 @@ IRREGULAR_OVERRIDES = {
             "Nosotros": "habríamos",
             "Ellos": "habrían",
             "Ustedes": "habrían",
+        },
+        "subjunctive": {
+            "Yo": "haya",
+            "Tú": "hayas",
+            "Él/Ella": "haya",
+            "Nosotros": "hayamos",
+            "Ellos": "hayan",
+            "Ustedes": "hayan",
         },
     },
     "tener": {
@@ -323,6 +371,14 @@ IRREGULAR_OVERRIDES = {
             "Ellos": "tendrían",
             "Ustedes": "tendrían",
         },
+        "subjunctive": {
+            "Yo": "tenga",
+            "Tú": "tengas",
+            "Él/Ella": "tenga",
+            "Nosotros": "tengamos",
+            "Ellos": "tengan",
+            "Ustedes": "tengan",
+        },
     },
     "querer": {
         "present": {
@@ -364,6 +420,14 @@ IRREGULAR_OVERRIDES = {
             "Nosotros": "querríamos",
             "Ellos": "querrían",
             "Ustedes": "querrían",
+        },
+        "subjunctive": {
+            "Yo": "quiera",
+            "Tú": "quieras",
+            "Él/Ella": "quiera",
+            "Nosotros": "queramos",
+            "Ellos": "quieran",
+            "Ustedes": "quieran",
         },
     },
     "saber": {
