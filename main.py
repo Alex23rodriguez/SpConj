@@ -43,7 +43,7 @@ def create_tense_question(tense: str) -> Q:
         return {
             "text": format_question_text(person, verb),
             "type": "fill",
-            "context": format_context(person, verb, tense),
+            # "context": format_context(person, verb, tense),
         }
 
     def correct(seed):

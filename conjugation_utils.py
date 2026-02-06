@@ -134,7 +134,7 @@ def format_question_text(person: str, verb: str) -> str:
     Returns:
         Formatted question text (e.g., "Yo [...] (ir)")
     """
-    return f"{person} [...] ({verb})"
+    return f"({verb}) {person} [...]"
 
 
 def format_context(person: str, verb: str, tense: str) -> str:
